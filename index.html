@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Discovering Spain: Football, Culture & More</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #333;
+    }
+    header {
+      background-color: #f7d9d9;
+      color: #2b2b2b;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.2em;
+      max-width: 800px;
+      margin: auto;
+    }
+    nav {
+      background-color: #ffecec;
+      text-align: center;
+      padding: 12px 0;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: #c91c1c;
+      font-weight: bold;
+      margin: 0 15px;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 10px;
+      transition: background 0.3s;
+    }
+    nav button:hover {
+      background-color: #f4baba;
+      border-radius: 5px;
+    }
+    section {
+      display: none;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      color: #c91c1c;
+    }
+    .activity { margin-bottom: 25px; }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+    ul { line-height: 1.8; }
+    footer {
+      text-align: center;
+      background-color: #ffecec;
+      color: #333;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    .gallery {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .gallery img {
+      width: 30%;
+      height: auto;
+      border-radius: 8px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Discovering Spain: Football, Culture & More</h1>
+    <p>Traveling to Spain is like opening a living encyclopedia of culture. From its grand cathedrals to golden beaches, from Goya’s art to Iniesta’s magic, this country blends history, flavors, and emotions. What always drew me in was its passion for football—an unconditional love felt in every square, bar, and stadium. That’s why I decided to follow the path of the ball across Spain... but also let the journey surprise me with so much more.</p>
+  </header>
+
+  <nav>
+    <button onclick="showSection('story')">My Story</button>
+    <button onclick="showSection('activities')">Experiences</button>
+    <button onclick="showSection('hotels')">Hotels</button>
+    <button onclick="showSection('tips')">Tips</button>
+    <button onclick="showSection('gallery')">Gallery</button>
+  </nav>
+
+  <section id="story" class="active">
+    <h2>My Story</h2>
+    <p>I have been a football fan since I was a kid, and for years I dreamed of attending a Clásico between Real Madrid and FC Barcelona. One day, without thinking twice, I booked a flight, packed a backpack, and had one idea: to live football passion from the inside. But I also wanted to explore the country beyond stadiums—getting lost in ancient streets, trying new dishes, visiting museums, and relaxing on beaches.</p>
+    <p>Every city showed me a different rhythm. In some, I was moved by goals; in others, by landscapes. I walked, got lost, talked to locals, and laughed. I tried to travel consciously: walking when possible, supporting local businesses, avoiding waste. Small gestures that made me feel part of the place.</p>
+    <img src="images/madrid.jpg" alt="Madrid Journey" />
+  </section>
+
+  <section id="activities">
+    <h2>15 Must-Do Experiences</h2>
+    <div class="activity">
+      <h3>Santiago Bernabéu Stadium Tour (Madrid)</h3>
+      <p>Walking through the players’ tunnel gave me chills. Standing where Zidane and Cristiano played is unforgettable. You should book in advance and bring a power bank for photos.</p>
+    </div>
+    <div class="activity">
+      <h3>Watching El Clásico Live</h3>
+      <p>I got tickets to Real Madrid vs Barcelona—it was wild! You have to experience it at least once. You could take the metro to avoid traffic jams.</p>
+    </div>
+    <div class="activity">
+      <h3>Spotify Camp Nou (Barcelona)</h3>
+      <p>Though under renovation, the museum was open and I cried watching Messi’s goals. You could buy tickets online in advance and avoid printed paper.</p>
+    </div>
+    <div class="activity">
+      <h3>Benito Villamarín Stadium (Seville)</h3>
+      <p>Real Betis’ stadium is pure passion. You should stay after the game to enjoy the fan atmosphere.</p>
+    </div>
+    <div class="activity">
+      <h3>Wanda Metropolitano Stadium (Madrid)</h3>
+      <p>Atlético’s stadium is modern and easy to tour. You have to hear the fans sing from the first minute.</p>
+    </div>
+    <div class="activity">
+      <h3>Malagueta Beach (Málaga)</h3>
+      <p>After so much football, I spent an afternoon under the sun enjoying fried fish and blue sea. You could bring a reusable water bottle and eco-friendly sunscreen.</p>
+    </div>
+    <div class="activity">
+      <h3>Oceanogràfic Aquarium (Valencia)</h3>
+      <p>Sharks, penguins, and a huge dolphinarium. You should visit slowly; it’s perfect for all ages.</p>
+    </div>
+    <div class="activity">
+      <h3>Prado Museum (Madrid)</h3>
+      <p>Velázquez and Goya moved me to tears again. You could go early and rent an audio guide for full details.</p>
+    </div>
+    <div class="activity">
+      <h3>Barcelona Zoo</h3>
+      <p>A peaceful afternoon watching elephants and gorillas. You have to wear comfortable shoes. You could bring lunch in reusable containers.</p>
+    </div>
+    <div class="activity">
+      <h3>Parque del Oeste Viewpoint (Madrid)</h3>
+      <p>A sunset with city and stadium views in the distance. You should bring snacks and relax.</p>
+    </div>
+    <div class="activity">
+      <h3>Pintxos and Football in San Sebastián</h3>
+      <p>First I ate delicious pintxos, then cheered for Real Sociedad. You have to try at least three different pintxos. You could walk to the stadium from downtown.</p>
+    </div>
+    <div class="activity">
+      <h3>Medieval Toledo and Kids Playing Football</h3>
+      <p>I was touched by an improvised match in an old town square. You should get lost in its streets without a map.</p>
+    </div>
+    <div class="activity">
+      <h3>Dolphinarium in Benalmádena</h3>
+      <p>A family day watching marine shows. You could combine it with a walk around the port.</p>
+    </div>
+    <div class="activity">
+      <h3>Football Museum (Barcelona)</h3>
+      <p>Jerseys, balls, and trophies. You have to see it if you’re a true football fan.</p>
+    </div>
+    <div class="activity">
+      <h3>Football and Tapas Night in Seville</h3>
+      <p>Watching a match from a bar with tapas and beer. You could end the night chatting with locals.</p>
+    </div>
+  </section>
+
+  <section id="hotels">
+    <h2>Where I Stayed</h2>
+    <ul>
+      <li><strong>NYX Hotel Madrid</strong>: Modern design with a football vibe and a great rooftop terrace. You should book early if there’s a big match.</li>
+      <li><strong>Hotel de Londres y de Inglaterra</strong>: Falling asleep to the sound of the sea was unforgettable. You have to watch the sunrise from your window.</li>
+      <li><strong>Catalonia Rigoletto</strong>: Just a 10-minute walk from Camp Nou. You could walk to the stadium and feel the vibe.</li>
+      <li><strong>Hotel Casa 1800 (Seville)</strong>: A restored Andalusian palace with charming patios. You should have a coffee in the courtyard to feel the historic atmosphere.</li>
+    </ul>
+  </section>
+
+  <section id="tips">
+    <h2>Travel Tips</h2>
+    <ul>
+      <li>You have to plan ahead: tickets and tours often sell out quickly.</li>
+      <li>You could carry a reusable water bottle: it helped me stay hydrated on trains, museums, and walks.</li>
+      <li>You should walk or bike when possible: cities like Seville, Madrid, and San Sebastián are perfect for it.</li>
+      <li>You have to support local businesses: from souvenir shops to neighborhood bars where locals watch matches.</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="images/malaga.jpg" alt="Beach in Málaga">
+      <img src="images/seville.jpg" alt="Seville view">
+      <img src="images/soccer.jpg" alt="Stadium during a match">
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Spain Football Trip</p>
+  </footer>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(section => section.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
+</body>
+</html>
