@@ -1,220 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Discovering Spain: Football, Culture & More</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #fce4ec, #e3f2fd);
       margin: 0;
-      padding: 0;
-      background-color: #ffffff;
       color: #333;
-    }
-    header {
-      background-color: #f7d9d9;
-      color: #2b2b2b;
-      padding: 80px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.2em;
-      max-width: 800px;
-      margin: auto;
     }
     nav {
-      background-color: #ffecec;
-      text-align: center;
-      padding: 12px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     nav button {
-      background: none;
+      background: transparent;
       border: none;
-      color: #c91c1c;
-      font-weight: bold;
-      margin: 0 15px;
+      color: #333;
+      margin: 5px 15px;
+      padding: 10px 20px;
+      font-weight: 600;
       cursor: pointer;
-      font-size: 16px;
-      padding: 10px;
-      transition: background 0.3s;
+      transition: 0.3s;
+      border-bottom: 2px solid transparent;
     }
-    nav button:hover {
-      background-color: #f4baba;
-      border-radius: 5px;
+    nav button:hover,
+    nav button.active {
+      color: #26a69a;
+      border-color: #26a69a;
     }
-    section {
+    header, section {
+      max-width: 1100px;
+      margin: 100px auto 60px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       display: none;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-      animation: fadeIn 0.5s ease-in-out;
+      color: #444;
     }
-    section.active {
+    header.active, section.active {
       display: block;
+      animation: fadeIn 0.6s ease-in-out;
     }
-    h2 {
-      color: #c91c1c;
+    section h2 {
+      border-left: 5px solid #26a69a;
+      padding-left: 10px;
+      margin-bottom: 20px;
     }
-    .activity { margin-bottom: 25px; }
     img {
       max-width: 100%;
-      border-radius: 10px;
-      margin: 15px 0;
+      max-heigth: 500%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      object-fit: cover;
     }
-    ul { line-height: 1.8; }
-    footer {
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      padding-top: 20px;
+    }
+    .activity {
+      background: rgba(255, 255, 255, 0.98);
+      padding: 32px;
+      border-radius: 14px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease;
       text-align: center;
-      background-color: #ffecec;
-      color: #333;
-      padding: 20px;
-      margin-top: 40px;
+      font-size: 1.15em;
+      line-height: 1.7;
+    }
+    .activity:hover {
+      transform: translateY(-5px);
+    }
+    .activity img {
+      width: 100%;
+      height: 240px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
     .gallery {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      align-items: start;
+      text-align: center;
     }
     .gallery img {
-      width: 30%;
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    footer {
+      background: #e0f2f1;
+      color: #555;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+      font-size: 0.9em;
+    }
+    .social-icons a {
+      color: #555;
+      margin: 0 10px;
+      font-size: 20px;
+      transition: 0.3s;
+    }
+    .social-icons a:hover {
+      color: #26a69a;
+    }
+    .intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fafafa;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Roboto', sans-serif;
+      font-size: 3em;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      z-index: 1000;
+      animation: fadeOut 3s 4s forwards;
+    }
+    .image-collage {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      animation: fadeOutCollage 3s ease 4s forwards;
+    }
+    .image-collage img {
+      position: absolute;
+      width: 220px;
       height: auto;
-      border-radius: 8px;
+      opacity: 0.3;
+      border-radius: 12px;
+      animation: float 6s infinite ease-in-out alternate;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .image-collage img:nth-child(1) { top: 10%; left: 5%; }
+    .image-collage img:nth-child(2) { top: 20%; left: 70%; }
+    .image-collage img:nth-child(3) { top: 50%; left: 20%; }
+    .image-collage img:nth-child(4) { top: 35%; left: 80%; }
+    .image-collage img:nth-child(5) { top: 60%; left: 40%; }
+    .image-collage img:nth-child(6) { top: 75%; left: 10%; }
+    .image-collage img:nth-child(7) { top: 5%; left: 50%; }
+    .image-collage img:nth-child(8) { top: 15%; left: 30%; }
+    .image-collage img:nth-child(9) { top: 45%; left: 60%; }
+    .image-collage img:nth-child(10) { top: 55%; left: 75%; }
+    .image-collage img:nth-child(11) { top: 25%; left: 15%; }
+    .image-collage img:nth-child(12) { top: 70%; left: 55%; }
+    .image-collage img:nth-child(13) { top: 80%; left: 25%; }
+    .image-collage img:nth-child(14) { top: 30%; left: 10%; }
+    .image-collage img:nth-child(15) { top: 20%; left: 90%; }
+    .image-collage img:nth-child(16) { top: 65%; left: 65%; }
+    .image-collage img:nth-child(17) { top: 10%; left: 85%; }
+    .image-collage img:nth-child(18) { top: 90%; left: 40%; }
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
+    @keyframes fadeOutCollage {
+      to { opacity: 0; visibility: hidden; }
+    }
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-10px) rotate(3deg); }
+    }
+    #tips li strong { font-weight: normal; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Discovering Spain: Football, Culture & More</h1>
-    <p>Traveling to Spain is like opening a living encyclopedia of culture. From its grand cathedrals to golden beaches, from Goya’s art to Iniesta’s magic, this country blends history, flavors, and emotions. What always drew me in was its passion for football—an unconditional love felt in every square, bar, and stadium. That’s why I decided to follow the path of the ball across Spain... but also let the journey surprise me with so much more.</p>
-  </header>
-
-  <nav>
-    <button onclick="showSection('story')">My Story</button>
-    <button onclick="showSection('activities')">Experiences</button>
-    <button onclick="showSection('hotels')">Hotels</button>
-    <button onclick="showSection('tips')">Tips</button>
-    <button onclick="showSection('gallery')">Gallery</button>
-  </nav>
-
-  <section id="story" class="active">
-    <h2>My Story</h2>
-    <p>I have been a football fan since I was a kid, and for years I dreamed of attending a Clásico between Real Madrid and FC Barcelona. One day, without thinking twice, I booked a flight, packed a backpack, and had one idea: to live football passion from the inside. But I also wanted to explore the country beyond stadiums—getting lost in ancient streets, trying new dishes, visiting museums, and relaxing on beaches.</p>
-    <p>Every city showed me a different rhythm. In some, I was moved by goals; in others, by landscapes. I walked, got lost, talked to locals, and laughed. I tried to travel consciously: walking when possible, supporting local businesses, avoiding waste. Small gestures that made me feel part of the place.</p>
-    <img src="images/madrid.jpg" alt="Madrid Journey" />
-  </section>
-
-  <section id="activities">
-    <h2>15 Must-Do Experiences</h2>
-    <div class="activity">
-      <h3>Santiago Bernabéu Stadium Tour (Madrid)</h3>
-      <p>Walking through the players’ tunnel gave me chills. Standing where Zidane and Cristiano played is unforgettable. You should book in advance and bring a power bank for photos.</p>
-    </div>
-    <div class="activity">
-      <h3>Watching El Clásico Live</h3>
-      <p>I got tickets to Real Madrid vs Barcelona—it was wild! You have to experience it at least once. You could take the metro to avoid traffic jams.</p>
-    </div>
-    <div class="activity">
-      <h3>Spotify Camp Nou (Barcelona)</h3>
-      <p>Though under renovation, the museum was open and I cried watching Messi’s goals. You could buy tickets online in advance and avoid printed paper.</p>
-    </div>
-    <div class="activity">
-      <h3>Benito Villamarín Stadium (Seville)</h3>
-      <p>Real Betis’ stadium is pure passion. You should stay after the game to enjoy the fan atmosphere.</p>
-    </div>
-    <div class="activity">
-      <h3>Wanda Metropolitano Stadium (Madrid)</h3>
-      <p>Atlético’s stadium is modern and easy to tour. You have to hear the fans sing from the first minute.</p>
-    </div>
-    <div class="activity">
-      <h3>Malagueta Beach (Málaga)</h3>
-      <p>After so much football, I spent an afternoon under the sun enjoying fried fish and blue sea. You could bring a reusable water bottle and eco-friendly sunscreen.</p>
-    </div>
-    <div class="activity">
-      <h3>Oceanogràfic Aquarium (Valencia)</h3>
-      <p>Sharks, penguins, and a huge dolphinarium. You should visit slowly; it’s perfect for all ages.</p>
-    </div>
-    <div class="activity">
-      <h3>Prado Museum (Madrid)</h3>
-      <p>Velázquez and Goya moved me to tears again. You could go early and rent an audio guide for full details.</p>
-    </div>
-    <div class="activity">
-      <h3>Barcelona Zoo</h3>
-      <p>A peaceful afternoon watching elephants and gorillas. You have to wear comfortable shoes. You could bring lunch in reusable containers.</p>
-    </div>
-    <div class="activity">
-      <h3>Parque del Oeste Viewpoint (Madrid)</h3>
-      <p>A sunset with city and stadium views in the distance. You should bring snacks and relax.</p>
-    </div>
-    <div class="activity">
-      <h3>Pintxos and Football in San Sebastián</h3>
-      <p>First I ate delicious pintxos, then cheered for Real Sociedad. You have to try at least three different pintxos. You could walk to the stadium from downtown.</p>
-    </div>
-    <div class="activity">
-      <h3>Medieval Toledo and Kids Playing Football</h3>
-      <p>I was touched by an improvised match in an old town square. You should get lost in its streets without a map.</p>
-    </div>
-    <div class="activity">
-      <h3>Dolphinarium in Benalmádena</h3>
-      <p>A family day watching marine shows. You could combine it with a walk around the port.</p>
-    </div>
-    <div class="activity">
-      <h3>Football Museum (Barcelona)</h3>
-      <p>Jerseys, balls, and trophies. You have to see it if you’re a true football fan.</p>
-    </div>
-    <div class="activity">
-      <h3>Football and Tapas Night in Seville</h3>
-      <p>Watching a match from a bar with tapas and beer. You could end the night chatting with locals.</p>
-    </div>
-  </section>
-
-  <section id="hotels">
-    <h2>Where I Stayed</h2>
-    <ul>
-      <li><strong>NYX Hotel Madrid</strong>: Modern design with a football vibe and a great rooftop terrace. You should book early if there’s a big match.</li>
-      <li><strong>Hotel de Londres y de Inglaterra</strong>: Falling asleep to the sound of the sea was unforgettable. You have to watch the sunrise from your window.</li>
-      <li><strong>Catalonia Rigoletto</strong>: Just a 10-minute walk from Camp Nou. You could walk to the stadium and feel the vibe.</li>
-      <li><strong>Hotel Casa 1800 (Seville)</strong>: A restored Andalusian palace with charming patios. You should have a coffee in the courtyard to feel the historic atmosphere.</li>
-    </ul>
-  </section>
-
-  <section id="tips">
-    <h2>Travel Tips</h2>
-    <ul>
-      <li>You have to plan ahead: tickets and tours often sell out quickly.</li>
-      <li>You could carry a reusable water bottle: it helped me stay hydrated on trains, museums, and walks.</li>
-      <li>You should walk or bike when possible: cities like Seville, Madrid, and San Sebastián are perfect for it.</li>
-      <li>You have to support local businesses: from souvenir shops to neighborhood bars where locals watch matches.</li>
-    </ul>
-  </section>
-
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="images/malaga.jpg" alt="Beach in Málaga">
-      <img src="images/seville.jpg" alt="Seville view">
-      <img src="images/soccer.jpg" alt="Stadium during a match">
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 My Spain Football Trip</p>
-  </footer>
-
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll("section");
-      sections.forEach(section => section.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-    }
-  </script>
+<div class="image-collage">
+  <img src="images/plazamadrid.jpg" alt="">
+  <img src="images/realmadrid.jpg" alt="">
+  <img src="images/clasico.jpg" alt="">
+  <img src="images/museob.jpg" alt="">
+  <img src="images/betis.jpg" alt="">
+  <img src="images/wanda.jpg" alt="">
+  <img src="images/malagab.jpg" alt="">
+  <img src="images/oceanografig.jpg" alt="">
+  <img src="images/museoarte.jpg" alt="">
+  <img src="images/barcelonazoo.jpg" alt="">
+  <img src="images/parqueoeste.jpg" alt="">
+  <img src="images/nyxhotel.jpg" alt="">
+  <img src="images/hotellondres.jpg" alt="">
+  <img src="images/catalonia.jpg" alt="">
+  <img src="images/casa1800.jpg" alt="">
+  <img src="images/malaga.jpg" alt="">
+  <img src="images/seville.jpg" alt="">
+  <img src="images/soccer.jpg" alt="">
+</div>
+<div class="intro-overlay">
+  Welcome to Discovering Spain
+</div>
+</div>
+<nav>
+  <button onclick="showSection('story', this)" class="active">My Story</button>
+  <button onclick="showSection('experiences', this)">Experiences</button>
+  <button onclick="showSection('hotels', this)">Hotels</button>
+  <button onclick="showSection('tips', this)">Tips</button>
+  <button onclick="showSection('gallery', this)">Gallery</button>
+</nav>
+<section id="story" class="active">
+  <h2>My Story</h2>
+  <p>Traveling to Spain is like opening a living encyclopedia of culture. From its grand cathedrals to golden beaches, from Goya’s art to Iniesta’s magic, this country blends history, flavors, and emotions. What always drew me in was its passion for football—an unconditional love felt in every square, bar, and stadium.</p>
+  <img src="images/plazamadrid.jpg" alt="Plaza Madrid">
+</section>
+<section id="experiences">
+  <h2>15 Must-Do Experiences</h2>
+  <div class="activity-grid">
+    <div class="activity"><img src="images/realmadrid.jpg" alt="Santiago Bernabéu"><h3>Santiago Bernabéu Stadium Tour</h3><p>Walking through the players’ tunnel gave me chills. It felt like stepping into the footsteps of legends before a roaring crowd.</p></div>
+    <div class="activity"><img src="images/clasico.jpg" alt="El Clásico"><h3>Watching El Clásico Live</h3><p>I got tickets to Real Madrid vs Barcelona—it was wild! The energy, chants, and rivalry made it unforgettable.</p></div>
+    <div class="activity"><img src="images/museob.jpg" alt="Spotify Camp Nou"><h3>Spotify Camp Nou (Barcelona)</h3><p>Though under renovation, the museum was open and full of historic shirts, trophies, and the spirit of Barça.</p></div>
+    <div class="activity"><img src="images/betis.jpg" alt="Benito Villamarín"><h3>Benito Villamarín Stadium</h3><p>Real Betis’ stadium is pure passion. Fans cheer nonstop and the green-and-white colors light up the entire experience.</p></div>
+    <div class="activity"><img src="images/wanda.jpg" alt="Wanda Metropolitano"><h3>Wanda Metropolitano Stadium</h3><p>Atlético’s stadium is modern and easy to tour. You feel the club’s grit and spirit around every corner.</p></div>
+    <div class="activity"><img src="images/malagab.jpg" alt="Malagueta Beach"><h3>Malagueta Beach</h3><p>Sun, fried fish, and blue sea—perfect combo! The beach vibe was chill, local, and full of joy.</p></div>
+    <div class="activity"><img src="images/oceanografig.jpg" alt="Oceanogràfic"><h3>Oceanogràfic Aquarium</h3><p>Sharks, penguins, and dolphins—all in one place. It’s the largest aquarium in Europe, and every zone amazed me.</p></div>
+    <div class="activity"><img src="images/museoarte.jpg" alt="Prado Museum"><h3>Prado Museum</h3><p>Velázquez and Goya moved me to tears again. Art here speaks of centuries of emotion, beauty, and struggle.</p></div>
+    <div class="activity"><img src="images/barcelonazoo.jpg" alt="Barcelona Zoo"><h3>Barcelona Zoo</h3><p>A peaceful afternoon watching elephants and gorillas. Great place for animal lovers and photography fans.</p></div>
+    <div class="activity"><img src="images/parqueoeste.jpg" alt="Parque del Oeste"><h3>Parque del Oeste Viewpoint</h3><p>A sunset with city and stadium views in the distance. One of those quiet corners that captures the soul of Madrid.</p></div>
+  </div>
+</section>
+<section id="hotels">
+  <h2>Where I Stayed</h2>
+  <div class="gallery">
+    <div><img src="images/nyxhotel.jpg" alt="NYX Hotel"><p>NYX Hotel Madrid: Modern design with a football vibe and a rooftop terrace for sunsets.</p></div>
+    <div><img src="images/hotellondres.jpg" alt="Hotel de Londres"><p>Hotel de Londres y de Inglaterra: A room with a sea view made every night magical.</p></div>
+    <div><img src="images/catalonia.jpg" alt="Catalonia Rigoletto"><p>Catalonia Rigoletto: Just a short walk from Camp Nou, with excellent service and breakfast.</p></div>
+    <div><img src="images/casa1800.jpg" alt="Hotel Casa 1800"><p>Hotel Casa 1800 (Seville): An Andalusian palace with interior patios and rich history in every corner.</p></div>
+  </div>
+</section>
+<section id="tips">
+  <h2>Travel Tips</h2>
+  <p>Traveling responsibly can be easy and rewarding. Here are my best tips, based on my own experience.:</p>
+  <ul>
+    <li>You have to</strong> plan ahead: stadiums, museums, and tours often sell out quickly. Trust me, it saved me from missing out on key experiences.</li>
+    <li>You should</strong> carry a reusable water bottle: I used mine every day—in train stations, museums, and long walks.</li>
+    <li>Why don’t you</strong> rent a bike in Seville or San Sebastián? It’s fun, cheap, and good for the environment. I felt more connected to the streets and people this way.</li>
+    <li>Try to</strong> eat in local restaurants instead of chains. You’ll get tastier, more authentic food, and you’ll be supporting small businesses.</li>
+    <li>If I were you, I would</strong> use public transportation. Metro systems in cities like Madrid and Barcelona are fast, clean, and reduce your carbon footprint.</li>
+    <li>Don’t forget to</strong> bring your own reusable bag for snacks, souvenirs, or groceries. I used mine almost every day.</li>
+    <li>It’s a good idea to</strong> carry a small trash bag when hiking or visiting beaches. I kept one in my backpack just in case.</li>
+  </ul>
+  <p>These small actions helped me travel more sustainably. And honestly, they made me feel like I was giving something back to the places that gave me so much.</p>
+</section>
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <div><img src="images/malaga.jpg" alt="Beach Málaga"><p>Relaxing beach afternoon in Málaga.</p></div>
+    <div><img src="images/seville.jpg" alt="Seville"><p>Colorful view of Seville’s historic center.</p></div>
+    <div><img src="images/soccer.jpg" alt="Match Moment"><p>Intense moment during a La Liga match.</p></div>
+  </div>
+</section>
+<footer>
+  <p>&copy; 2025 My Spain Football Trip. All rights reserved.</p>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+<script>
+const sectionThemes = {
+  story: '#f8bbd0',
+  experiences: '#b2dfdb',
+  hotels: '#ffe0b2',
+  tips: '#dcedc8',
+  gallery: '#d1c4e9'
+};
+function showSection(id, button) {
+  const sections = document.querySelectorAll("section");
+  const buttons = document.querySelectorAll("nav button");
+  sections.forEach(sec => sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  button.classList.add('active');
+  const color = sectionThemes[id] || '#e0f7fa';
+  document.body.style.background = color;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+window.onload = () => {
+  showSection('story', document.querySelector('nav button.active'));
+};
+</script>
 </body>
 </html>
